@@ -4,7 +4,10 @@ import 'materialize-css/dist/js/materialize.min.js';
 //init header select
 
   const selects = document.querySelectorAll('select');
-  M.FormSelect.init(selects);
+  M.FormSelect.init(selects, {
+    constrainWidth: true,
+    closeOnClick: true,
+  });
 
   export function getSelectInstance(elem){
     return M.FormSelect.getInstance(elem);
@@ -35,4 +38,11 @@ import 'materialize-css/dist/js/materialize.min.js';
     return M.Datepicker.getInstance(elem);
   }
 
+
+  //init dropDownMenu
+  const dropDown = document.querySelectorAll('.dropdown-trigger');
+  M.Dropdown.init(dropDown, {
+    constrainWidth: false,
+    closeOnClick: false,
+  });
 

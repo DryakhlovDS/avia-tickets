@@ -6,7 +6,7 @@ class TicketsUI {
 
   }
 
-  renderTickets(massive, curr) {
+  renderTickets(massive) {
     this.container.innerHTML = ''; //can be method
 
     if (!massive.length) {
@@ -18,13 +18,13 @@ class TicketsUI {
 
       let frag = '';
       massive.forEach(tiket => {
-        frag += this.renderOneTiket(tiket, curr);
+        frag += this.renderOneTiket(tiket);
       });
       this.container.insertAdjacentHTML('afterbegin', frag);
     }
   }
 
-  renderOneTiket(obj, symbol) {
+  renderOneTiket(obj) {
     return `<div class="card" data-ticket-id ="${obj.ticketId}">
     <div class="card-header d-flex">
       <span class="card-title">${obj.airlineName}</span>
@@ -44,7 +44,7 @@ class TicketsUI {
     </div>
     <div class="card-action d-flex">
       <div class="card__price">
-        ${symbol}${obj.price}
+        ${obj.currency}${obj.price}
       </div>
       <a href="#" class="btn waves-effect btn-apply ml-auto">
         Buy
@@ -59,6 +59,18 @@ class TicketsUI {
     this.msgInner.classList.add('message_info');
     this.msgInner.textContent = textInfo; //'По вашему запросу билетов не найдено.';
   }
+
+  showMsgError(text) {
+    this.msg.classList.add('active');
+    this.msgInner.classList.add('message_error');
+    this.msgInner.textContent = text; //'По вашему запросу билетов не найдено.';
+  }
+
+  hideMsgError() {
+    this.msg.classList.remove('active');
+    this.msgInner.classList.remove('message_error');
+    this.msgInner.innerHTML = '';
+  }  
 
   hideMsgInfo() {
     this.msg.classList.remove('active');

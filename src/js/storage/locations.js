@@ -1,5 +1,5 @@
 import api from '../services/apiService';
-import forDate from './transformDate';
+import forDate from '../helpers/transformDate';
 
 class Locations {
   constructor(api) {
@@ -104,7 +104,6 @@ class Locations {
   async fetchTickets(params) {
     const res = await this.api.tickets(params);
     this.lastSearch = this.serializeTickets(res.data);
-    console.log(this.lastSearch);
     return res.data;
   }
 

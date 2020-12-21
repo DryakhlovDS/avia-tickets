@@ -4,9 +4,11 @@ import '../css/helpers.scss';
 
 import locations from './storage/locations';
 import favorite from './storage/favorite';
+import { indexElement } from './helpers/simpleFunctions';
 import formUI from './veiws/form';
 import navigationUI from './veiws/nav';
 import ticketsUI from './veiws/tickets';
+import favoriteTicketsUI from './veiws/favoriteTickets';
 
 document.addEventListener('DOMContentLoaded', e => {
 
@@ -17,16 +19,20 @@ document.addEventListener('DOMContentLoaded', e => {
     onSubmit();
   })
 
-  ticketsUI.container.addEventListener('click', e => {
+  document.body.addEventListener('click', e => {
     if (e.target.classList.contains('favorite-border')) {
-      favorite.addFavoriteUI(e.target);
+      favoriteTicketsUI.addFavorite(e.target);
       addFavorite(e.target);
+      favoriteTicketsUI.refreshFavoriteTickets(favorite.list);
       return;
     }
 
     if (e.target.classList.contains('favorite')) {
-      favorite.removeFavoriteUI(e.target);
-      favorite.removeFavorite(e.target);
+      let cardId = favorite.removeFavorite(e.target);
+      favoriteTicketsUI.refreshFavoriteTickets(favorite.list);
+      let icon = document.querySelector(`[data-ticket-id = "${cardId}"] .favorite`);
+      favoriteTicketsUI.removeFavorite(icon);// на карточке в основном поле
+      
       return;
     }
 
@@ -38,10 +44,17 @@ document.addEventListener('DOMContentLoaded', e => {
   }
 
   async function onSubmit() {
-    const departValue = 'MOW'; //locations.getCityCodeByKey(formUI.inputDepartValue) ;
-    const arriveValue = 'KZN'; //locations.getCityCodeByKey(formUI.inputArrivetValue) ;
-    const dateArrive = formUI.dateArriveValue || '2020-12';
-    const dateDepart = formUI.dateDepartValue || '2020-12';
+    if (!formUI.inputDepartValue || !formUI.inputArrivetValue || !formUI.dateArriveValue || !formUI.dateDepartValue){
+      ticketsUI.showMsgError('Заполните все поля формы!');
+      return;
+    }
+    else{
+      ticketsUI.hideMsgError();
+    }
+    const departValue = locations.getCityCodeByKey(formUI.inputDepartValue) ;
+    const arriveValue = locations.getCityCodeByKey(formUI.inputArrivetValue) ;
+    const dateArrive = formUI.dateArriveValue;
+    const dateDepart = formUI.dateDepartValue;
     const currency = navigationUI.currencyValue;
 
     await locations.fetchTickets({
@@ -53,23 +66,23 @@ document.addEventListener('DOMContentLoaded', e => {
     });
 
     const symbol = navigationUI.getCurrencySymbol(currency);
-    ticketsUI.renderTickets(locations.lastSearch, symbol);
+    locations.lastSearch.forEach( obj => {
+      Object.assign(obj , {currency: symbol});
+    });
+   
+    ticketsUI.renderTickets(locations.lastSearch);
 
   }
 
   function addFavorite(target) {
     let card = target.closest('.card');
     const ticketId = card.dataset.ticketId;
-    let num = 0;
-
-    while (!!card.previousSibling) {
-      num++;
-      card = card.previousSibling;
-    }
+    const num = indexElement(card);
 
     Object.assign(favorite.list, {
       [ticketId]: locations.lastSearch[num]
     });
+
   }
 
 })
