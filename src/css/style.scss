@@ -1,0 +1,198 @@
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+
+  & nav {
+    background-color: $text-color;
+    // color: $text-color;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  & .brand-logo {
+    position: relative;
+    margin-left: 1rem;
+  }
+
+  & .select-wrapper input.select-dropdown {
+    border-bottom: none;
+    font-size: 18px;
+    color: $white-color;
+  }
+
+  & .select-wrapper .caret {
+    fill: $white-color;
+  }
+
+  & .dropdown-content li>span {
+    color: $text-color;
+  }
+}
+
+.search {
+  & .card {
+    margin: 2rem auto;
+    max-width: 700px;
+    background-color: $text-color;
+    color: $white-color;
+
+    & .card-action {
+      border-top: 1px solid $main-a-color;
+    }
+  }
+
+  & .input-field {
+    width: 100%;
+
+    & .material-icons {
+      &.active {
+        color: $main-color;
+      }
+    }
+
+    & .prefix~input {
+      width: calc(100% - 4rem);
+    }
+
+    & input[type=text] {
+      color: $white-color;
+      padding-left: 7px;
+      border-bottom: 1px solid $white-color;
+
+      &:focus {
+        color: $white-color;
+        border-bottom: 1px solid $main-color;
+        box-shadow: 0 1px 0 0 $main-a-color;
+      }
+    }
+
+    & label {
+      padding-left: 7px;
+      color: $white-color;
+
+      &.active {
+        color: $main-color !important;
+      }
+    }
+  }
+
+  .datepicker-date-display {
+    background-color: $main-color;
+  }
+
+  .datepicker-calendar-container {
+    color: $text-color;
+  }
+
+  .datepicker-table td.is-selected {
+    background-color: $main-color;
+  }
+}
+
+.message {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  &__inner {
+    margin: 1rem auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 700px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &_info {
+    color: $white-color;
+    background-color: $main-color;
+  }
+
+  &_error {
+    color: $white-color;
+    background-color: $attention-color;
+  }
+}
+
+.tickets {
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  & .card {
+    margin: 1rem auto;
+    width: 100%;
+    max-width: 600px;
+    font-size: 20px;
+    color: $text-color;
+
+    &-header {
+      padding: 0 15px;
+      width: 100%;
+      height: 70px;
+      background-color: $text-color;
+      color: $white-color;
+    }
+
+    &__icons {
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+
+      & i {
+        font-size: 30px;
+
+        &.favorite {
+          color: $main-color;
+        }
+      }
+
+
+
+      &:hover {
+        & i {
+
+          color: $main-color;
+        }
+      }
+    }
+
+    &__price {
+      font-size: 20px;
+      font-weight: 700;
+      color: $main-color;
+    }
+
+    & .card-action {
+      border-top: 1px solid $main-a-color;
+    }
+
+    .flight-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+
+      & img {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+      }
+    }
+  }
+}

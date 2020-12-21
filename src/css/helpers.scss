@@ -1,0 +1,28 @@
+@import 'variables';
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.btn-apply {
+  background-color: $apply-color;
+  // color: $text-color;
+}
+
+.btn-attention {
+  background-color: $attention-color;
+}
