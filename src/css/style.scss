@@ -146,15 +146,15 @@
       width: calc(100% - 4rem);
     }
 
-    & input[type=text] {
-      color: $white-color;
-      padding-left: 7px;
-      border-bottom: 1px solid $white-color;
+    & input {
+      color: $white-color !important;
+      padding-left: 7px !important;
+      border-bottom: 1px solid $white-color !important;
 
       &:focus {
-        color: $white-color;
-        border-bottom: 1px solid $main-color;
-        box-shadow: 0 1px 0 0 $main-a-color;
+        color: $white-color !important;
+        border-bottom: 1px solid $main-color !important;
+        box-shadow: 0 1px 0 0 $main-a-color !important;
       }
     }
 
