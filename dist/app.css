@@ -6594,6 +6594,7 @@ input[type=range]::-ms-thumb {
 .header {
   width: 100%; }
   .header nav {
+    height: auto;
     background-color: #2A4580; }
     .header nav .btn i {
       line-height: inherit; }
@@ -6650,6 +6651,13 @@ input[type=range]::-ms-thumb {
   .header .brand-logo {
     position: relative;
     margin-left: 1rem; }
+    @media screen and (max-width: 425px) {
+      .header .brand-logo {
+        font-size: 1.5rem;
+        left: 34%; } }
+  @media screen and (max-width: 375px) {
+    .header .dropdown-trigger span {
+      display: none; } }
   .header .select-wrapper input.select-dropdown {
     border-bottom: none;
     font-size: 18px;

@@ -8,6 +8,7 @@
   width: 100%;
 
   & nav {
+    height: auto;
     background-color: $text-color;
 
     // color: $text-color;
@@ -26,7 +27,6 @@
       background-color: $main-color;
       color: $white-color;
       cursor: default;
-
     }
 
     & .card {
@@ -99,6 +99,17 @@
   & .brand-logo {
     position: relative;
     margin-left: 1rem;
+
+    @media screen and (max-width: 425px) {
+      font-size: 1.5rem;
+      left: 34%;
+    }
+  }
+
+  & .dropdown-trigger span {
+    @media screen and (max-width: 375px) {
+      display: none;
+    }
   }
 
   & .select-wrapper input.select-dropdown {
@@ -111,7 +122,7 @@
     fill: $white-color;
   }
 
-  & .dropdown-content li>span {
+  & .dropdown-content li > span {
     color: $text-color;
   }
 
@@ -142,7 +153,7 @@
       }
     }
 
-    & .prefix~input {
+    & .prefix ~ input {
       width: calc(100% - 4rem);
     }
 
@@ -212,7 +223,6 @@
 }
 
 .tickets {
-
   &__inner {
     display: flex;
     flex-wrap: wrap;
